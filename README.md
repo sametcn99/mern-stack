@@ -17,7 +17,7 @@ This project is a learning progress project aimed at mastering the MERN stack (M
 - [x] Seed the database with initial data
 
 ### Frontend
-- [ ] Set up React project
+- [x] Set up React project
 - [ ] Create user registration form
 - [ ] Create user login form
 - [ ] Implement form validation
