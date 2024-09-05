@@ -5,18 +5,20 @@ This project is a learning progress project aimed at mastering the MERN stack (M
 ## TO-DO
 
 ### Backend
+
 - [x] Set up MongoDB connection
 - [x] Create user model
-- [ ] Implement user authentication (JWT)
+- [x] Implement user authentication (JWT)
 - [ ] Create user registration endpoint
-- [ ] Create user login endpoint
-- [ ] Implement middleware for authentication
+- [x] Create user login endpoint
+- [x] Implement middleware for authentication
 - [ ] Create CRUD operations for user data
-- [ ] Set up error handling middleware
+- [x] Set up error handling middleware
 - [ ] Write unit tests for controllers and routes
 - [x] Seed the database with initial data
 
 ### Frontend
+
 - [x] Set up React project
 - [ ] Create user registration form
 - [ ] Create user login form
@@ -28,6 +30,7 @@ This project is a learning progress project aimed at mastering the MERN stack (M
 - [ ] Write unit tests for components and reducers
 
 ### DevOps
+
 - [ ] Set up Docker for containerization
 - [ ] Create Dockerfile for backend
 - [ ] Create Dockerfile for frontend
@@ -36,12 +39,14 @@ This project is a learning progress project aimed at mastering the MERN stack (M
 - [ ] Deploy application to cloud service (AWS, Heroku, etc.)
 
 ### Documentation
+
 - [ ] Write detailed README file
 - [ ] Document API endpoints
 - [ ] Create a guide for setting up the project locally
 - [ ] Add comments to the code for better understanding
 
 ### Miscellaneous
+
 - [ ] Set up ESLint and Prettier for code formatting
 - [ ] Configure environment variables for different environments (development, production)
 - [ ] Implement logging for debugging and monitoring

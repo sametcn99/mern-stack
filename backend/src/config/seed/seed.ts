@@ -2,61 +2,65 @@ import mongoose from 'mongoose'
 import User from '../../models/User'
 import mockData from './mock-data.json'
 import ora from 'ora'
+import bcrypt from 'bcrypt'
 
 /**
  * Seeds the database with mock data.
  *
  * @remarks
- * This function connects to the MongoDB database, clears the existing users collection,
- * and inserts mock data into the users collection. It ensures that each document in the
- * mock data has a unique _id and id.
+ * This function connects to the database, clears the users collection, and inserts mock data into the collection.
  *
- * @returns A Promise that resolves when the database is successfully seeded.
- *
- * @throws An error if there is a problem connecting to the database, cleaning the users
- * collection, or inserting the mock data.
+ * @returns A Promise that resolves when the database is seeded successfully or rejects with an error.
  */
 async function seedDatabase() {
+	const dbSpinner = ora('Trying to connect to database')
+	const seedSpinner = ora('Seeding database')
 	try {
-		// MongoDB'ye bağlanın
-		const spinner = ora('Trying to connect to database').start()
 		try {
+			dbSpinner.start()
 			const mongoURI = process.env.MONGO_URI
 			if (!mongoURI) throw new Error('MongoURI is not defined')
 			await mongoose.connect(mongoURI)
-			spinner.succeed('Database connected')
+			dbSpinner.succeed('Database connected')
 		} catch (error) {
-			spinner.fail('Error connecting to database')
+			dbSpinner.fail('Error connecting to database')
 			console.error(error)
 			return
 		}
 
-		// Mevcut kullanıcıları temizleyin
+		// Start the seed spinner
+		seedSpinner.start()
+
+		// Clear the users collection
+		seedSpinner.text = 'Cleaning database'
 		await User.deleteMany({})
 
-		// Kullanıcıların temizlendiğini kontrol edin
+		// Ensure the users collection is empty
 		const userCount = await User.countDocuments({})
-		if (userCount !== 0) {
-			throw new Error('Failed to clean users collection')
-		} else {
-			console.log('Users collection cleaned successfully')
-		}
+		if (userCount !== 0) throw new Error('Failed to clean users collection')
+		else seedSpinner.text = 'Database cleaned'
 
-		// Ensure each document in mockData has a unique _id and id
-		const uniqueMockData = mockData.map((user) => ({
-			...user,
-			_id: new mongoose.Types.ObjectId(),
-			id: user.id || new mongoose.Types.ObjectId().toString(),
-		}))
+		const uniqueMockData = await Promise.all(
+			mockData.map(async (user) => {
+				const hashedPassword = await bcrypt.hash(user.password, 10)
+				return {
+					...user,
+					_id: new mongoose.Types.ObjectId(),
+					id: user.id || new mongoose.Types.ObjectId().toString(),
+					password: hashedPassword,
+				}
+			}),
+		)
 
-		// Mock verileri ekleyin
+		// Insert the mock data into the users collection in the database
 		await User.insertMany(uniqueMockData)
 
-		console.log('Database seeded successfully')
+		seedSpinner.succeed('Database seeded successfully')
 	} catch (error) {
 		console.error('Error seeding database:', error)
+		seedSpinner.fail('Error seeding database')
 	} finally {
-		// MongoDB bağlantısını kapatın
+		// Close the database connection
 		mongoose.connection.close()
 	}
 }
