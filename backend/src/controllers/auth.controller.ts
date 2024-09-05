@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express'
 import { SignJWT } from 'jose'
-import User from '../models/User'
+import User from '../models/user.model'
 import bcrypt from 'bcrypt'
 
 export class AuthController {

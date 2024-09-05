@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import User from '../../models/User'
+import User from '../../models/user.model'
 import mockData from './mock-data.json'
 import ora from 'ora'
 import bcrypt from 'bcrypt'

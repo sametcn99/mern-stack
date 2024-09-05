@@ -14,6 +14,5 @@ export async function connectDB() {
 		spinner.succeed('Database connected')
 	} catch (error) {
 		spinner.fail('Error connecting to database. \n Error: ' + error)
-		console.error(error)
 	}
 }

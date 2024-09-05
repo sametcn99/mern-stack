@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
-import logger from './logger'
-import errorHandler from './error-handler'
+import logger from './logger.middleware'
+import errorHandler from './error-handler.middleware'
 
 /**
  * Configures the middlewares for the Express application.

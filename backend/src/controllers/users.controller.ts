@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express'
-import User from '../models/User'
+import User from '../models/user.model'
 import type { Document } from 'mongoose' // Import the correct type
 
 type CreateUserRequest = {
