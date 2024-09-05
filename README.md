@@ -47,6 +47,6 @@ This project is a learning progress project aimed at mastering the MERN stack (M
 
 ### Miscellaneous
 
-- [ ] Set up ESLint and Prettier for code formatting
+- [x] Set up ESLint and Prettier for code formatting
 - [ ] Configure environment variables for different environments (development, production)
-- [ ] Implement logging for debugging and monitoring
+- [x] Implement logging for debugging and monitoring

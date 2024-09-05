@@ -13,7 +13,7 @@ export async function connectDB() {
 		await mongoose.connect(mongoURI)
 		spinner.succeed('Database connected')
 	} catch (error) {
-		spinner.fail('Error connecting to database')
+		spinner.fail('Error connecting to database. \n Error: ' + error)
 		console.error(error)
 	}
 }
