@@ -21,7 +21,7 @@ This project is a learning progress project aimed at mastering the MERN stack (M
 
 - [x] Set up React project
 - [ ] Create user registration form
-- [ ] Create user login form
+- [x] Create user login form
 - [ ] Implement form validation
 - [ ] Set up Redux for state management
 - [ ] Create user profile page

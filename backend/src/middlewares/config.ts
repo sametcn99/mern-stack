@@ -9,7 +9,17 @@ import errorHandler from './error-handler.middleware'
  * @param app - The Express application.
  */
 export const configureMiddlewares = (app: express.Application) => {
-	app.use(cors()) // Middleware to enable CORS
+	app.use(
+		cors({
+			origin: process.env.CLIENT_URL,
+			credentials: true,
+			allowedHeaders: [
+				'Content-Type',
+				'Authorization',
+				'Access-Control-Allow-Origin',
+			],
+		}),
+	) // Middleware to enable CORS
 	app.use(logger) // Middleware to log requests
 	app.use(express.json()) // Middleware to parse JSON bodies
 	app.use(express.urlencoded({ extended: true })) // Middleware to parse URL-encoded bodies
