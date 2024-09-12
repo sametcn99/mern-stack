@@ -1,12 +1,12 @@
 import mongoose from 'mongoose'
-import ora from 'ora'
+import { type Ora } from 'ora'
 
 /**
  * Connects to the database.
  * @returns {Promise<void>} A promise that resolves when the database is connected.
  */
-export async function connectDB() {
-	const spinner = ora('Trying to connect to database').start()
+export async function connectDB(spinner: Ora) {
+	spinner.text = 'Connecting to database...'
 	try {
 		const mongoURI = process.env.MONGO_URI
 		if (!mongoURI) throw new Error('MongoURI is not defined')

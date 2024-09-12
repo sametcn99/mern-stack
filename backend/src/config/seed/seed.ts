@@ -45,7 +45,7 @@ import inquirer from 'inquirer'
 		// Ensure the users collection is empty
 		const userCount = await User.countDocuments({})
 		if (userCount !== 0) throw new Error('Failed to clean users collection')
-		else seedSpinner.text = 'Database cleaned'
+		else seedSpinner.succeed('Database cleaned')
 
 		seedSpinner.text = 'Hashing passwords'
 		const uniqueMockData = await Promise.all(
@@ -59,13 +59,14 @@ import inquirer from 'inquirer'
 				}
 			}),
 		)
+		seedSpinner.succeed('Passwords hashed successfully')
 
 		seedSpinner.text = 'Seeding database'
 
 		// Insert the mock data into the users collection in the database
 		await User.insertMany(uniqueMockData)
 
-		seedSpinner.succeed('Database seeded successfully')
+		seedSpinner.succeed('Database seeded successfully').stop()
 	} catch (error) {
 		console.error('Error seeding database:', error)
 		seedSpinner.fail('Error seeding database')

@@ -1,4 +1,18 @@
 export default function Me() {
+	/**
+		if (!username) {
+			return (
+				<main className="w-full flex flex-col min-h-screen justify-center items-center bg-foreground text-foreground">
+					<div className="bg-card p-8 rounded shadow-md w-full max-w-2xl">
+						<h2 className="text-2xl font-bold mb-6 text-center text-card-foreground">
+							Please log in
+						</h2>
+					</div>
+				</main>
+			)
+		}
+	*/
+
 	return (
 		<main className="w-full flex flex-col min-h-screen justify-center items-center bg-foreground text-foreground">
 			<div className="bg-card p-8 rounded shadow-md w-full max-w-2xl">

@@ -2,13 +2,18 @@ import express from 'express'
 import cors from 'cors'
 import logger from './logger.middleware'
 import errorHandler from './error-handler.middleware'
+import type { Ora } from 'ora'
 
 /**
  * Configures the middlewares for the Express application.
  *
  * @param app - The Express application.
  */
-export const configureMiddlewares = (app: express.Application) => {
+export const configureMiddlewares = (
+	app: express.Application,
+	spinner: Ora,
+) => {
+	spinner.text = 'Configuring middlewares...'
 	app.use(
 		cors({
 			origin: process.env.CLIENT_URL,
@@ -26,4 +31,5 @@ export const configureMiddlewares = (app: express.Application) => {
 
 	// Error handler middleware should be the last middleware to be added to the Express application stack to handle errors that may occur during the request-response cycle.
 	app.use(errorHandler) // Middleware to handle errors
+	spinner.succeed('Middlewares configured')
 }

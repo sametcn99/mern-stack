@@ -37,7 +37,7 @@ export default function Auth() {
 			return
 		}
 		try {
-			console.log(email, password)
+			console.debug(email, password)
 			const response = await fetch(`${apiURL}/api/auth`, {
 				method: 'POST',
 				headers: {
